@@ -387,18 +387,7 @@ client.on('guildCreate', guild => {
 client.channels.get("446243110025166858").sendEmbed(embed)
 });
 
-client.on('guildDelete', guild => {
-         const embed = new Discord.RichEmbed()
-     .setColor("GOLD")
-     .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=535050355386613760&permissions=0&scope=bot')
-  .setDescription(`**
-  Server Kicked StarBot :cry:
-اسم السيرفر: ${guild.name}
-صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("446243110025166858").sendEmbed(embed)
-});
- 
+
 
 client.on('message', message => {
             if(!message.channel.guild) return;
