@@ -179,7 +179,6 @@ client.on('message', msg => {
 }
 });
 
-ver prefix = "="
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
