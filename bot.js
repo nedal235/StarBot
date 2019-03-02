@@ -5,7 +5,7 @@ const prefix = '=';
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(` =help | Legend System ✨ `,"https://www.twitch.tv/S-F")
+client.user.setGame(` =help | StarBot ✨ `,"https://www.twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -179,6 +179,36 @@ client.on('message', msg => {
 }
 });
 
+const prefix = "D"
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+  if (message.author.id !== '505072087287726090') return;
+
+if (message.content.startsWith(prefix + 'p')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(`**:white_check_mark:  : ${argresult}**`)
+} else 
+
+if (message.content.startsWith(prefix + 'w')) {
+client.user.setActivity(argresult, {type:'WATCHING'});
+    message.channel.sendMessage(`**:white_check_mark:  : ${argresult}**`)
+} else 
+if (message.content.startsWith(prefix + 'l')) {
+client.user.setActivity(argresult, {type:'LISTENING'});
+    message.channel.sendMessage(`**:white_check_mark:  : ${argresult}**`)
+} else 
+
+if (message.content.startsWith(prefix + 's')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/Justin-Ly0001");
+    message.channel.sendMessage(`**:white_check_mark:  : ${argresult}**`)
+}
+
+});
+
+
+
 
 client.on("message", message => {
 	var prefix = "=";
@@ -189,11 +219,11 @@ client.on("message", message => {
 	 ** 
 	         Please Chose: 
 			 
-${prefix}help public ⇏ اوامر عامة
-${prefix}help admin ⇏ اوامر ادارة السيرفر
+${prefix}help-p ⇏ اوامر عامة
+${prefix}help-a ⇏ اوامر ادارة السيرفر
 			 
-${prefix}help games ⇏ اوامر الالعاب
-${prefix}help music ⇏ اوامر الموسيقى
+${prefix}help-g ⇏ اوامر الالعاب
+${prefix}help-m ⇏ اوامر الموسيقى
 
 ${prefix}clan لعرض اوامر الكلانات 
 **
@@ -207,7 +237,7 @@ ${prefix}clan لعرض اوامر الكلانات
 
 client.on("message", message => {
 	var prefix = "=";
- if (message.content === "=help public") {
+ if (message.content === "=help-p") {
 	 message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
   const embed = new Discord.RichEmbed() 
       .setColor("#000000")
@@ -341,36 +371,42 @@ client.on("message", message => {
    }
    }); 
 
+
+
+
+
+
+
 client.on('guildCreate', guild => {
          const embed = new Discord.RichEmbed()
      .setColor("RED")
      .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=484098782158651392&permissions=8&scope=bot')
+     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=535050355386613760&permissions=0&scope=bot')
   .setDescription(`**
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("406877114936197120").sendEmbed(embed)
+client.channels.get("446243110025166858").sendEmbed(embed)
 });
 
 client.on('guildDelete', guild => {
          const embed = new Discord.RichEmbed()
      .setColor("GOLD")
      .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=484098782158651392&permissions=8&scope=bot')
+     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=535050355386613760&permissions=0&scope=bot')
   .setDescription(`**
-  Server Kicked Legend System :cry:
+  Server Kicked StarBot :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("406877114936197120").sendEmbed(embed)
+client.channels.get("446243110025166858").sendEmbed(embed)
 });
  
 
 client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('LG=bcall')){
- if (message.author.id !== '406877114936197120') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
- if(!message.author.id === '406877114936197120') return;
+if (message.content.startsWith('Sb=bcall')){
+ if (message.author.id !== '446243110025166858') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
+ if(!message.author.id === '446243110025166858') return;
 message.channel.sendMessage('جار ارسال الرسالة |✅')
 client.users.forEach(m =>{
 m.sendMessage(args)
@@ -3121,7 +3157,7 @@ let embed = new Discord.RichEmbed()
                 
                                  .addField('شكرا لدخولك سيرفر', `${member.guild.name}`,true)
                                    
- .setFooter("LegendSystem")
+ .setFooter("StarBot")
     .setTimestamp()
 
   channel.sendEmbed(embed);
@@ -3169,7 +3205,7 @@ member.addRole(member.guild.roles.find('name', 'Member'));
         .setTitle('❌ | تمت معاقبتك')
         .setAuthor(message.author.username, message.author.avatarURL)
         .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر روابط اضافة الى سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الاسكات عن طريق الخطأ الرجاء التوجه والتكلم مع الادآرة**`)
-        .addField(`by`,`LegendSystem. `)
+        .addField(`by`,`StarBot. `)
         .setColor('RED')
         .setThumbnail(message.author.avatarURL)
         .setFooter(`${message.guild.name} Server`, message.guild.iconURL)
