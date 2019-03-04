@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '*';
 const ms = require("ms");
-const { Client, Util } = require('discord.js');  
 const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
 const request = require('request');
 const db = require('quick.db');
