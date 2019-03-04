@@ -138,13 +138,13 @@ client.on("message", message => {
 	       **__Help Commands:__** 
 
 **			 
-${prefix}public ⥨ الاوامر العامة
+${prefix}help-p ⥨ الاوامر العامة
 
-${prefix}admin ⥨ اوامر الادارة
+${prefix}help-a ⥨ اوامر الادارة
 			 
-${prefix}games ⥨ اوامر الالعاب
+${prefix}help-g ⥨ اوامر الالعاب
 
-${prefix}music ⥨ اوامر الموسيقى
+${prefix}help-m ⥨ اوامر الموسيقى
 
 **__Other Commands:__**
 
@@ -163,7 +163,7 @@ ${prefix}support ⥨ لدخول سيرفر الدعم
 
 
    client.on("message", message => {
- if (message.content === "*public") {
+ if (message.content === "*help-p") {
         message.react("📫")
 	           message.react("✅")
   const embed = new Discord.RichEmbed() 
@@ -847,29 +847,55 @@ let embed = new Discord.RichEmbed()
     .setTimestamp()
 
   channel.sendEmbed(embed);
+	
+}
+	
+	  
+});
 
-
-client.on('message', function(message) {
-    if (!message.member.hasPermissions(['Administration'])){
-            let command = message.content.split(" ")[0];
-        if(message.content.includes('discord.gg')){
-        message.reply (' ')
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
-     message.member.addRole(message.guild.roles.find('name', 'Muted')); 
+   client.on('message', async message => {
+            if(message.content.includes('discord.gg')){ 
+                if(message.member.hasPermission("MANAGE_GUILD")) return;
+        if(!message.channel.guild) return;
+        message.delete()
+          var command = message.content.split(" ")[0];
+    let muterole = message.guild.roles.find(`name`, "Muted");
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "Muted",
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
+    }
+           if(!message.channel.guild) return message.reply('** هذا الامر فقط للسيرفرات**');
+     message.member.addRole(muterole);
     const embed500 = new Discord.RichEmbed()
-      .setTitle(":x: | تمت معاقبتك")
-            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`bk7-v`)
+      .setTitle("معاقب")
+            .addField(`** ⚖️ بسبب نشر الروابط **`,`** ￼ **`)
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
-            .setAuthor(message.author.username, message.author.avatarURL) 
-        .setFooter(`${message.guild.name} Server`)
-     message.channel.send(embed500) 
-    
-        
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} `)
+     message.channel.send(embed500)
+     message.author.send('` انت معاقب ميوت شاتي بسبب نشر سرفرات ان كان عن طريق الخطا **ف** تكلم مع الادارة `');
+   
+       
     }
-    }
-});
+})
+  
+
+
+
 
 
 client.on('message', async message =>{
