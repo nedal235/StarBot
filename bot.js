@@ -971,7 +971,7 @@ msg.channel.awaitMessages(fltr, {time:60000, max:1
       }else if(co.first().content === '3') {
         reason  = "تم تحذيره بسبب الاهانة"
       }
-    .then(co => {
+}).then(co => {
 
 co.first().delete();
   e.edit(`**${msg.author} تم تحذيره و وصلوة للادارة | :white_check_mark: **`).then(p => {
