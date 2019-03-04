@@ -850,7 +850,7 @@ let embed = new Discord.RichEmbed()
 
 
 client.on('message', function(message) {
-    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+    if (!message.member.hasPermissions(['Administration'])){
             let command = message.content.split(" ")[0];
         if(message.content.includes('discord.gg')){
         message.reply (' ')
