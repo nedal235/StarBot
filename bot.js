@@ -1869,7 +1869,7 @@ message.author.sendEmbed(embed)
 
  
  
-var prefix = "*" 
+
 client.on('message', async msg => {
     if (msg.author.bot) return undefined;
    
